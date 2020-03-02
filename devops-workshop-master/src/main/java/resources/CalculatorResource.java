@@ -36,7 +36,7 @@ public class CalculatorResource {
          * The total regex expression accepts for example:::
          * 12+34,
          * 1+2,
-         * 10000+1000 sssssssssssssssssssssss
+         * 10000+1000
          */
         if (expressionTrimmed.matches("[0-9]+[+][0-9]+")) result = sum(expressionTrimmed);
         else if (expressionTrimmed.matches("[0-9]+[-][0-9]+")) result = subtraction(expressionTrimmed);
