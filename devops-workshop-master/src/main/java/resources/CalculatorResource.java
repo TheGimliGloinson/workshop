@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Calculator resource exposed at '/calculator' path
+ *Jeg var her
  */
 @Path("/calculator")
 public class CalculatorResource {
