@@ -32,7 +32,7 @@ public class CalculatorResource {
          * [0-9]+[+][0-9]+ explained:
          * [0-9]+: a number from 0-9 one or more times. For example 1, 12 and 123.
          * [+]: the operator + one time.
-         * The total regex expression accepts for example:
+         * The total regex expression accepts for example:::
          * 12+34,
          * 1+2,
          * 10000+1000
