@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/calculator")
 public class CalculatorResource {
-
+//Hello
     /**
      * Method handling HTTP POST requests. The calculated answer to the expression will be sent to the client as
      * plain/text.
@@ -37,7 +37,7 @@ public class CalculatorResource {
          * 1+2,
          * 10000+1000
          */
-        if(expressionTrimmed.matches("[0-9]+[+][0-9]+")) result = sum(expressionTrimmed);
+        if(expressionTrimmed.matches("[0-9]+[+][0-9]+")) result = sum(expressionTrimmed); //TODO update regex
         else if(expressionTrimmed.matches("[0-9]+[-][0-9]+")) result = subtraction(expressionTrimmed);
 
         return result;
