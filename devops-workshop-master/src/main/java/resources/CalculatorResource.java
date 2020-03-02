@@ -15,15 +15,16 @@ public class CalculatorResource {
     /**
      * Method handling HTTP POST requests. The calculated answer to the expression will be sent to the client as
      * plain/text.
+     *
      * @param expression the expression to be solved as plain/text.
      * @return solution to the expression as plain/text or -1 on error
      */
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    public int calculate(String expression){
+    public int calculate(String expression) {
         // Removes all whitespaces
-        String expressionTrimmed = expression.replaceAll("\\s+","");
+        String expressionTrimmed = expression.replaceAll("\\s+", "");
 
         int result = -1;
 
@@ -37,18 +38,21 @@ public class CalculatorResource {
          * 1+2,
          * 10000+1000
          */
-        if(expressionTrimmed.matches("[0-9]+[+][0-9]+")) result = sum(expressionTrimmed);
-        else if(expressionTrimmed.matches("[0-9]+[-][0-9]+")) result = subtraction(expressionTrimmed);
+        if (expressionTrimmed.matches("[0-9]+[+][0-9]+")) result = sum(expressionTrimmed);
+        else if (expressionTrimmed.matches("[0-9]+[-][0-9]+")) result = subtraction(expressionTrimmed);
+        else if (expressionTrimmed.matches("[0-9]+[*][0-9]+")) result = multiplication(expressionTrimmed);
+        else if (expressionTrimmed.matches("[0-9]+[/][0-9]+")) result = division(expressionTrimmed);
 
         return result;
     }
 
     /**
      * Method used to calculate a sum expression.
+     *
      * @param expression the equation to be calculated as a String
      * @return the answer as an int
      */
-    public int sum(String expression){
+    public int sum(String expression) {
         String[] split = expression.split("[+]");
 
         int number1 = Integer.parseInt(split[0]);
@@ -59,10 +63,11 @@ public class CalculatorResource {
 
     /**
      * Method used to calculate a subtraction expression.
+     *
      * @param expression the expression to be calculated as a String
      * @return the answer as an int
      */
-    public int subtraction(String expression){
+    public int subtraction(String expression) {
         String[] split = expression.split("[-]");
 
         int number1 = Integer.parseInt(split[0]);
@@ -70,29 +75,30 @@ public class CalculatorResource {
 
         return number1 - number2;
     }
-    public int multiplication(String expression){
+
+    public int multiplication(String expression) {
         String[] split = expression.split("[*]");
-        
+
         int number1 = Integer.parseInt(split[0]);
         int number2 = Integer.parseInt(split[1]);
-        
+
         return number1 * number2;
     }
-    public double division(String expression){
+
+    public double division(String expression) {
         String[] split = expression.split("[*]");
-        
+
         int number1 = Integer.parseInt(split[0]);
         int number2 = Integer.parseInt(split[1]);
-        
-        try{
-            if(number2==0){
-                 throw new IllegalArgumentException("Argument 'divisor' is 0");
+
+        try {
+            if (number2 == 0) {
+                throw new IllegalArgumentException("Argument 'divisor' is 0");
             }
-            divNumber = number1/number2;
-        }
-        catch (IllegalArgumentException e) {
+            divNumber = number1 / number2;
+        } catch (IllegalArgumentException e) {
         }
         return divNumber;
     }
-        
+
 }
